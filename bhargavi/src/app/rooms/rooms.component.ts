@@ -80,6 +80,22 @@ export class RoomsComponent implements OnInit {
 
  selectRoom(room:RoomsList){
     console.log(room);
+  }
+
+ addRoom(){
+  const room : RoomsList ={
+    roomNumber:5,
+    roomType :  'Deluxe Room',
+    amenities:  'Air Conditioner,Free wifi,Tv,Bathroom,Kitchen',
+    price:1000,
+    photos:
+    'src=https://media.istockphoto.com/id/457982209/photo/t…20&c=vweeII_P5daI0zUzwLZPVgi4zCGrOV2BKJY-LpYN4qI=',
+    checkinTime: new Date('28-Oct-2023'),
+    checkoutTime:new Date('30-Oct-2023'),
+    rating:4.2
+  };
+  this.roomList.push(room);
  }
+
 }
 

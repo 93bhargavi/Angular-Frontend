@@ -14,7 +14,7 @@ Rooms List
    </tr>
 
    <tr [ngClass]="e ? 'even' : 'odd' "
-   *ngFor="let room of room | slice : 0:5; let e=even; let o=odd; let i=index">
+   *ngFor="let room of room let e=even; let o=odd; let i=index">
        <th>{{i}}</th>
        <td>{{e ? "Even" : "Odd"}}</td>
        <td>{{room.roomNumber}}</td>

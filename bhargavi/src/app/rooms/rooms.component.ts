@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, SimpleChanges } from '@angular/core';
 import { Room, RoomsList } from './rooms';
 
 @Component({
@@ -6,7 +6,7 @@ import { Room, RoomsList } from './rooms';
   templateUrl: './rooms.component.html',
   styleUrls: ['./rooms.component.css']
 })
-export class RoomsComponent implements OnInit {
+export class RoomsComponent implements OnInit  {
   hotelName="Kushi Hotel";
   numberOfRooms=10;
   hideRooms=false;
@@ -21,7 +21,12 @@ export class RoomsComponent implements OnInit {
 
   roomList : RoomsList[] = [];
 
+  title='Rooms List';
+
   constructor(){}
+  ngOnChanges(changes: SimpleChanges): void {
+    throw new Error('Method not implemented.');
+  }
 
   ngOnInit():void{ 
     this.roomList = [{
@@ -76,7 +81,13 @@ export class RoomsComponent implements OnInit {
     }]
   }
 
-  toggle(){this.hideRooms =!this.hideRooms;}
+  toggle(){this.hideRooms =!this.hideRooms;
+          this.title="Rooms List";
+  }
+   
+
+
+
 
  selectRoom(room:RoomsList){
     console.log(room);
@@ -94,7 +105,9 @@ export class RoomsComponent implements OnInit {
     checkoutTime:new Date('30-Oct-2023'),
     rating:4.2
   };
-  this.roomList.push(room);
+  // this.roomList.push(room);
+
+  this.roomList = [...this.roomList,room]
  }
 
 }

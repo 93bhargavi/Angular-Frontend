@@ -1,4 +1,4 @@
-import { AfterViewInit, Component,DoCheck,OnInit, SimpleChanges, ViewChild } from '@angular/core';
+import { AfterViewChecked, AfterViewInit, Component,DoCheck,OnInit, QueryList, SimpleChanges, ViewChild, ViewChildren } from '@angular/core';
 import { Room, RoomsList } from './rooms';
 import { HeaderComponent } from '../header/header.component';
 
@@ -7,7 +7,7 @@ import { HeaderComponent } from '../header/header.component';
   templateUrl: './rooms.component.html',
   styleUrls: ['./rooms.component.css']
 })
-export class RoomsComponent implements OnInit,DoCheck ,AfterViewInit{
+export class RoomsComponent implements OnInit,DoCheck ,AfterViewInit,AfterViewChecked{
   hotelName="Kushi Hotel";
   numberOfRooms=10;
   hideRooms=false;
@@ -24,12 +24,21 @@ export class RoomsComponent implements OnInit,DoCheck ,AfterViewInit{
 
   title='Rooms List';
 
-  @ViewChild(HeaderComponent)
-  headerComponent: HeaderComponent = new HeaderComponent;
+  @ViewChild(HeaderComponent)  headerComponent: HeaderComponent = new HeaderComponent;
+
+  @ViewChildren(HeaderComponent)
+  headerChildrenComponent!: QueryList<HeaderComponent>;
   constructor(){}
+
+  ngAfterViewChecked(): void {
+   }
+
+
   ngAfterViewInit(): void {
-    throw new Error('Method not implemented.');
-  }
+ this.headerComponent.title="Room View";
+ this.headerChildrenComponent.last.title="Last Title";
+
+   }
 
 
   ngDoCheck(): void {
@@ -41,8 +50,8 @@ export class RoomsComponent implements OnInit,DoCheck ,AfterViewInit{
   }
 
   ngOnInit():void{ 
-    console.log(this.headerComponent);
-    this.roomList = [{
+    // console.log(this.headerComponent);
+     this.roomList = [{
       roomNumber:1,
       roomType :  'Deluxe Room',
       amenities:  'Air Conditioner,Free wifi,Tv,Bathroom,Kitchen',

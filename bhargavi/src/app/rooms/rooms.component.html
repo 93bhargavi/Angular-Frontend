@@ -19,7 +19,7 @@
 
 
 
- <div *ngIf=" rooms.availableRooms >0" >
+ <div *ngIf=" hideRooms" >
     <app-rooms-list  [room] ="roomList" [title]='title' (selectedRoom)="selectRoom($event)"></app-rooms-list>
  </div>
 
